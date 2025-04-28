@@ -1,9 +1,11 @@
 import heapq
+from collections import defaultdict
 
 class PrimsMST:
     def __init__(self, vertices):
         self.vertices = vertices
-        self.graph = {i: [] for i in range(vertices)}
+        #self.graph = {i: [] for i in range(vertices)}
+        self.graph = defaultdict(list)
 
     def add_edge(self, u, v, weight):
         self.graph[u].append((weight, v))

@@ -1,7 +1,8 @@
 import heapq
 
 def dijkstra(graph, start):
-    pq = [(0, start)]  # (distance, node)
+    pq = [(0, start)]  
+# (distance, node) Dijkstra expects to prioritize by distance first, so the elements in the priority queue should be (distance, node)
     distances = {node: float('inf') for node in graph}
     distances[start] = 0
 

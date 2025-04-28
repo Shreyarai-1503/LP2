@@ -23,7 +23,7 @@ class KruskalMST:
             rank[root_x] += 1
 
     def kruskal(self):
-        self.edges.sort()
+        self.edges.sort(key=lambda edge: edge[2])
         parent = {i: i for i in range(self.vertices)}
         rank = {i: 0 for i in range(self.vertices)}  # Tracks the height
         mst = []
