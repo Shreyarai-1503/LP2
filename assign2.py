@@ -3,7 +3,7 @@ import heapq
 # Function to print the puzzle
 def print_puzzle(puzzle):
     for i in range(3):
-        print(puzzle[i*3 : (i+1)*3])
+        print(puzzle[i*3 : (i+1)*3]) # Slice the list to get rows
     print()
 
 # Function to calculate Manhattan Distance heuristic
@@ -59,11 +59,17 @@ def solve_puzzle(start, goal):
 
     print("Impossible to solve!")
 
-# Function to check if puzzle is solvable
+# Check if the puzzle is solvable based on inversions
 def is_solvable(state):
-    nums = [num for num in state if num != -1]
-    inversions = sum(1 for i in range(len(nums)) for j in range(i+1, len(nums)) if nums[i] > nums[j])
-    return inversions % 2 == 0
+    nums = [num for num in state if num != -1]  # Remove the empty space (-1)
+    
+    inversions = 0
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):  # Compare every number with those after it
+            if nums[i] > nums[j]:  # Inversion if the first number is larger than the second
+                inversions += 1
+    
+    return inversions % 2 == 0  # If inversions is even, puzzle is solvable
 
 # Input and execution
 start = list(map(int, input("Enter start state (-1 for empty, space-separated): ").split()))
